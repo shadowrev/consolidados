@@ -1,0 +1,40 @@
+{% extends "L3EConsolidadosBundle::layout.html.twig" %}
+
+{% block title %}Consolidados{% endblock %}
+{% block javascripts %}
+    <script type="text/javascript">
+        var loadRequest = function(formulario) {
+//            $("#lista-colegios").load("{{ path('filtrar_colegios') }}", {                
+//            });
+            $.ajax({
+                url: "{{ path('filtrar_colegios') }}",
+                type: "POST",
+                data: {
+                    "nombre": formulario.nombre.value
+                },
+                dataType: 'html',
+                success: function(response) {
+                    $("#lista-colegios").html(response);
+                }
+            });
+            return false;
+        }
+        
+        $(document).ready(function() {
+            $("#busqueda-form").submit(function() {
+                return loadRequest(this);
+            });
+        });
+    </script>
+{% endblock %}
+{% block body %}
+    <fieldset>
+        <form id="busqueda-form" action="{{ path('filtrar_colegios') }}" method="post">
+            <div>
+                <input name="nombre" type="text"/>
+                <input type="submit" value="Buscar"/>
+            </div>
+        </form>
+    </fieldset>
+    <div id="lista-colegios"/>
+{% endblock %}

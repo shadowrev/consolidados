@@ -1,0 +1,80 @@
+L3E\ConsolidadosBundle\Entity\Colegio:
+    type: entity
+    table: colegio
+    repositoryClass: L3E\ConsolidadosBundle\EntityRepository\ColegioRepository
+    id:
+        coleidn:
+            type: integer
+            nullable: false
+            unsigned: false
+            comment: ''
+            id: true
+            generator:
+                strategy: SEQUENCE
+    fields:
+        lugaidn:
+            type: decimal
+            nullable: true
+            precision: 10
+            scale: 0
+            comment: ''
+        colecoddanen:
+            type: decimal
+            nullable: true
+            precision: 10
+            scale: 0
+            comment: ''
+        coledescripv:
+            type: string
+            nullable: true
+            length: 150
+            fixed: false
+            comment: ''
+        colelogov:
+            type: string
+            nullable: true
+            length: 255
+            fixed: false
+            comment: ''
+        coleemailv:
+            type: string
+            nullable: true
+            length: 60
+            fixed: false
+            comment: ''
+        coledireccionv:
+            type: string
+            nullable: true
+            length: 80
+            fixed: false
+            comment: ''
+        coletelefonofv:
+            type: string
+            nullable: true
+            length: 20
+            fixed: false
+            comment: ''
+        colefaxv:
+            type: string
+            nullable: true
+            length: 20
+            fixed: false
+            comment: ''
+        colesectorv:
+            type: string
+            nullable: true
+            length: 25
+            fixed: false
+            comment: ''
+        colezonav:
+            type: string
+            nullable: true
+            length: 25
+            fixed: false
+            comment: ''
+        comuidn:
+            type: integer
+            nullable: true
+            unsigned: false
+            comment: ''
+    lifecycleCallbacks: {  }

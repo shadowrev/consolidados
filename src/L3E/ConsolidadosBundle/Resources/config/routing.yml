@@ -1,0 +1,15 @@
+l3_e_consolidados_homepage:
+    path:     /
+    defaults: { _controller: L3EConsolidadosBundle:Reportes:listarColegios }
+
+listar_cursos:
+    path:     /listarcolegios
+    defaults: { _controller: L3EConsolidadosBundle:Reportes:listarColegios }
+
+filtrar_colegios:
+    path:     /filtrarcolegios
+    defaults: { _controller: L3EConsolidadosBundle:Reportes:filtrarColegios }
+    
+listar_cursos_colegio:
+    path:     /listarcursos
+    defaults: { _controller: L3EConsolidadosBundle:Reportes:listarCursos }

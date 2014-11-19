@@ -1,0 +1,20 @@
+L3E\ConsolidadosBundle\Entity\Tipoexamen:
+    type: entity
+    table: tipoexamen
+    id:
+        tipoexamidn:
+            type: integer
+            nullable: false
+            unsigned: false
+            comment: ''
+            id: true
+            generator:
+                strategy: SEQUENCE
+    fields:
+        tipoexamdescript:
+            type: text
+            nullable: true
+            length: null
+            fixed: false
+            comment: ''
+    lifecycleCallbacks: {  }

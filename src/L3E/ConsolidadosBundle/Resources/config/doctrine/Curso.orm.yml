@@ -1,0 +1,41 @@
+L3E\ConsolidadosBundle\Entity\Curso:
+    type: entity
+    table: curso
+    repositoryClass: L3E\ConsolidadosBundle\EntityRepository\CursoRepository
+    id:
+        cursidn:
+            type: integer
+            nullable: false
+            unsigned: false
+            comment: ''
+            id: true
+            generator:
+                strategy: SEQUENCE
+    fields:
+        cursdescripv:
+            type: string
+            nullable: true
+            length: 32
+            fixed: false
+            comment: ''
+        cursnombrev:
+            type: string
+            nullable: true
+            length: 256
+            fixed: false
+            comment: ''
+    oneToMany:
+        cursos:
+            targetEntity: Curso
+            mappedBy: curCursidn
+    manyToOne:
+        curCursidn:
+            targetEntity: Curso
+            cascade: {  }
+            mappedBy: null
+            inversedBy: cursos
+            joinColumns:
+                cur_cursidn:
+                    referencedColumnName: cursidn
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

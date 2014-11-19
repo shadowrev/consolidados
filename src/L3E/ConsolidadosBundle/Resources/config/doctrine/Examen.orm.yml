@@ -1,0 +1,89 @@
+L3E\ConsolidadosBundle\Entity\Examen:
+    type: entity
+    table: examen
+    indexes:
+        idx_examen_examestadon:
+            columns:
+                - examestadon
+        idx_examen_examidn_exa_exam:
+            columns:
+                - examidn
+                - exa_examidn
+        idx_examen_examordenn:
+            columns:
+                - examordenn
+        IDX_514C8FEC1CFAD130:
+            columns:
+                - baseidn
+        IDX_514C8FECD7F8B5E9:
+            columns:
+                - exa_examidn
+        IDX_514C8FEC4E9A417B:
+            columns:
+                - tipoexamidn
+    id:
+        examidn:
+            type: integer
+            nullable: false
+            unsigned: false
+            comment: ''
+            id: true
+            generator:
+                strategy: SEQUENCE
+    fields:
+        examnombrev:
+            type: string
+            nullable: true
+            length: 256
+            fixed: false
+            comment: ''
+        examestadon:
+            type: smallint
+            nullable: true
+            unsigned: false
+            comment: ''
+        examdescript:
+            type: text
+            nullable: true
+            length: null
+            fixed: false
+            comment: ''
+        examordenn:
+            type: integer
+            nullable: true
+            unsigned: false
+            comment: ''
+        exagrado:
+            type: integer
+            nullable: true
+            unsigned: false
+            comment: ''
+    manyToOne:
+        baseidn:
+            targetEntity: Bases
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                baseidn:
+                    referencedColumnName: baseidn
+            orphanRemoval: false
+        exaExamidn:
+            targetEntity: Examen
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                exa_examidn:
+                    referencedColumnName: examidn
+            orphanRemoval: false
+        tipoexamidn:
+            targetEntity: Tipoexamen
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                tipoexamidn:
+                    referencedColumnName: tipoexamidn
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

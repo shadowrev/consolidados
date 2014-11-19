@@ -1,0 +1,10 @@
+{% extends "L3EConsolidadosBundle::layout.html.twig" %}
+{% block title %}Consolidados{% endblock %}
+{% block body %}
+    <h2>Lista de cursos para</h2>
+    <ul>
+    {% for curso in cursos %}
+        <li>{{ curso.caliidn }} - {{ curso.curso_cursdescripv }} - {{ curso.califechad }} - {{ curso.caliidn }} - {{ curso.nalumnos }} - {{ curso.califica_jornada }}</li>
+    {% endfor %}
+    </ul>
+{% endblock %}

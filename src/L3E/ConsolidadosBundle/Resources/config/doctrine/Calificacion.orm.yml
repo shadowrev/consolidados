@@ -1,0 +1,91 @@
+L3E\ConsolidadosBundle\Entity\Calificacion:
+    type: entity
+    table: calificacion
+    repositoryClass: L3E\ConsolidadosBundle\EntityRepository\CalificacionRepository
+    id:
+        caliidn:
+            type: integer
+            nullable: false
+            unsigned: false
+            comment: ''
+            id: true
+            generator:
+                strategy: SEQUENCE
+    fields:
+        califechad:
+            type: date
+            nullable: true
+            comment: ''
+        caliestadon:
+            type: integer
+            nullable: true
+            unsigned: false
+            comment: ''
+        calipremarcan:
+            type: integer
+            nullable: true
+            unsigned: false
+            comment: ''
+        distidn:
+            type: integer
+            nullable: true
+            unsigned: false
+            comment: ''
+        jornidn:
+            type: integer
+            nullable: true
+            unsigned: false
+            comment: ''
+        usuaidn:
+            type: integer
+            nullable: true
+            unsigned: false
+            comment: ''
+    manyToOne:        
+        calCaliidn:
+            targetEntity: Calificacion
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                cal_caliidn:
+                    referencedColumnName: caliidn
+            orphanRemoval: false
+        coleidn:
+            targetEntity: Colegio
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                coleidn:
+                    referencedColumnName: coleidn
+            orphanRemoval: false
+        cursidn:
+            targetEntity: Curso
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                cursidn:
+                    referencedColumnName: cursidn
+            orphanRemoval: false
+        
+        examidn:
+            targetEntity: Examen
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                examidn:
+                    referencedColumnName: examidn
+            orphanRemoval: false
+    oneToMany:
+        calificaciones:
+            targetEntity: Calificacionxestudiante
+            mappedBy: caliidn
+            inversedBy: null
+            joinColumns:
+                caliidn:
+                    referencedColumnName: caliidn
+        
+    lifecycleCallbacks: {  }

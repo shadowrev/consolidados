@@ -1,0 +1,4 @@
+l3_e_consolidados:
+    resource: "@L3EConsolidadosBundle/Resources/config/routing.yml"
+    prefix:   /
+

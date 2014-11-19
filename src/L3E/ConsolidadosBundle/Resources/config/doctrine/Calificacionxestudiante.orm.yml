@@ -1,0 +1,116 @@
+L3E\ConsolidadosBundle\Entity\Calificacionxestudiante:
+    type: entity
+    table: calificacionxestudiante
+    indexes:
+        idx_calificaxestu_caliidn_calicodaux:
+            columns:
+                - caliidn
+                - calicodauxn
+        idx_califixestu_estuidn:
+            columns:
+                - estuidn
+        idx_calificaxestu_caliidnexamid:
+            columns:
+                - caliidn
+                - examidn
+        idx_calificaxestu_calixesturesp:
+            columns:
+                - calixesturespv
+        idx_calificacionxestudiante_cal:
+            columns:
+                - calicodauxn
+        IDX_8EBBFFF512EB656F:
+            columns:
+                - caliidn
+        IDX_8EBBFFF5221050E0:
+            columns:
+                - examidn
+        IDX_8EBBFFF5F0BFB217:
+            columns:
+                - usuaidn
+    uniqueConstraints:
+        idx_calificacionxestudiante_est:
+            columns:
+                - estuidn
+                - caliidn
+                - examidn
+    id:
+        calixestuidn:
+            type: integer
+            nullable: false
+            unsigned: false
+            comment: ''
+            id: true
+            generator:
+                strategy: SEQUENCE
+    fields:
+        calixesturespv:
+            type: text
+            nullable: true
+            length: null
+            fixed: false
+            comment: ''
+        caliactivon:
+            type: smallint
+            nullable: true
+            unsigned: false
+            comment: ''
+        calicodauxn:
+            type: integer
+            nullable: true
+            unsigned: false
+            comment: ''
+        calipreorden:
+            type: integer
+            nullable: true
+            unsigned: false
+            comment: ''
+        colecoddanen:
+            type: decimal
+            nullable: true
+            precision: 10
+            scale: 0
+            comment: ''
+        calicodlistan:
+            type: integer
+            nullable: true
+            unsigned: false
+            comment: ''
+    manyToOne:
+        caliidn:
+            targetEntity: Calificacion
+            cascade: {  }
+            mappedBy: null
+            inversedBy: calificaciones
+            joinColumns:
+                caliidn:
+                    referencedColumnName: caliidn
+            orphanRemoval: false
+        estuidn:
+            targetEntity: Estudiante
+            cascade: {  }
+            mappedBy: null
+            inversedBy: calificaciones
+            joinColumns:
+                estuidn:
+                    referencedColumnName: estuidn
+            orphanRemoval: false
+        examidn:
+            targetEntity: Examen
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                examidn:
+                    referencedColumnName: examidn
+            orphanRemoval: false
+        usuaidn:
+            targetEntity: Usuario
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                usuaidn:
+                    referencedColumnName: usuaidn
+            orphanRemoval: false
+    lifecycleCallbacks: {  }
