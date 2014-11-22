@@ -13,3 +13,7 @@ filtrar_colegios:
 listar_cursos_colegio:
     path:     /listarcursos
     defaults: { _controller: L3EConsolidadosBundle:Reportes:listarCursos }
+    
+listar_asignaturas:
+    path:     /listarasignaturas
+    defaults: { _controller: L3EConsolidadosBundle:Reportes:verMaterias }

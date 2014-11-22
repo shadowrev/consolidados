@@ -25,6 +25,16 @@ class ColegioRepository extends EntityRepository
         return $resultset->fetchAll();
     }
     
+    public function buscarDane($codigo_dane)
+    {
+        $sql_colegios = "SELECT * FROM colegio co WHERE co.colecoddanen = :codigo_dane";
+        $resultset = $this->getEntityManager()->getConnection()
+                ->prepare($sql_colegios);
+        $resultset->bindValue('codigo_dane', $codigo_dane);
+        $resultset->execute();
+        return $resultset->fetchAll();
+    }
+    
     /**
      * Obtiene todos los colegios registrados en el sistema
      * @return type Lista de colegios
@@ -43,16 +53,35 @@ class ColegioRepository extends EntityRepository
      * @param type $id_colegio Identificador del colegio
      * @return type Lista de cursos
      */
-    public function obtenerCursosCalificacion($id_colegio)
+    public function obtenerPaquetesGrados($id_colegio)
     {
-        $sql_consulta = "SELECT * FROM v_salones vs"
-                . " WHERE vs.cal_caliidn IN ("
-                . "SELECT vc.caliidn FROM v_paquetes vc"
-                . " WHERE vc.coleidn = :id_colegio)";
+        $sql_consulta = "SELECT caliidn, curso_cursdescripv, distnombrev, coledescripv, califechad, usuaidn, coleidn, distidn, califechadxano"
+                . " FROM v_paquetes vp"
+                . " WHERE vp.coleidn = :id_colegio"
+                . " ORDER BY caliidn";
         $resultset = $this->getEntityManager()->getConnection()
                 ->prepare($sql_consulta);
         $resultset->bindValue('id_colegio', $id_colegio);
         $resultset->execute();
+        return $resultset->fetchAll();
+    }
+    
+    public function obtenerCursosCalificacion($id_colegio)
+    {
+        $paquetes_grado = $this->obtenerPaquetesGrados($id_colegio);
+        if(empty($paquetes_grado)) throw new Exception(); // Aborta la consulta
+        
+        $caliidn_arr = array();
+        foreach ($paquetes_grado as $paquete)
+        {
+            $caliidn_arr[] = $paquete['caliidn'];
+        }
+        $sql_consulta = "SELECT vs.caliidn, vs.curso_cursdescripv, vs.usuaidn, vs.califechad, vs.cal_caliidn, vs.nalumnos, vs.califica_jornada "
+                . "FROM v_salones vs "
+                . "WHERE vs.cal_caliidn IN (?) "
+                . "ORDER BY vs.califechad, vs.curso_cursdescripv";
+        $resultset = $this->getEntityManager()->getConnection()
+                ->executeQuery($sql_consulta, array($caliidn_arr), array(\Doctrine\DBAL\Connection::PARAM_INT_ARRAY));
         return $resultset->fetchAll();
     }
 }

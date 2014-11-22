@@ -16,8 +16,32 @@ use Doctrine\ORM\EntityRepository;
  */
 class CursoRepository extends EntityRepository 
 {
-    public function buscarPorCalificacion($id_calificacion)
+    
+    public function buscarPorCurso($id_curso)
     {
         
+    }
+    
+    public function asignaturasPorPeriodo($id_paquete)
+    {
+        $sql = "SELECT * FROM asignaturaxexamen axe INNER JOIN asignatura asi "
+                . "ON axe.asigidn = asi.asigidn"
+                . " WHERE axe.examidn IN ("
+                . "SELECT cal.examidn FROM calificacion cal WHERE cal.cal_caliidn = :id_paquete)";
+        $resultset = $this->getEntityManager()->getConnection()
+                ->prepare($sql);
+        $resultset->bindValue('id_paquete', $id_paquete);
+        $resultset->execute();
+        return $resultset->fetchAll();
+    }
+    
+    public function paquetesPorCurso($paquete_curso)
+    {
+        $sql = "SELECT * FROM v_calificacion WHERE cal_caliidn = :paquete_curso";
+        $resultset = $this->getEntityManager()->getConnection()
+                ->prepare($sql);
+        $resultset->bindValue('paquete_curso', $paquete_curso);
+        $resultset->execute();
+        return $resultset->fetchAll();
     }
 }

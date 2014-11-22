@@ -4,7 +4,9 @@
     <h2>Lista de cursos para</h2>
     <ul>
     {% for curso in cursos %}
-        <li>{{ curso.caliidn }} - {{ curso.curso_cursdescripv }} - {{ curso.califechad }} - {{ curso.caliidn }} - {{ curso.nalumnos }} - {{ curso.califica_jornada }}</li>
+        <li>
+            <a href="{{ path('listar_asignaturas') }}?paquete={{ curso.caliidn }}">Paquete: {{ curso.caliidn }}</a> - Curso: {{ curso.curso_cursdescripv }} - Fecha: {{ curso.califechad }}
+        </li>
     {% endfor %}
     </ul>
 {% endblock %}
