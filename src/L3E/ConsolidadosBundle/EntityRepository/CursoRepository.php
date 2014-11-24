@@ -16,12 +16,11 @@ use Doctrine\ORM\EntityRepository;
  */
 class CursoRepository extends EntityRepository 
 {
-    
-    public function buscarPorCurso($id_curso)
-    {
-        
-    }
-    
+    /**
+     * 
+     * @param type $id_paquete
+     * @return type
+     */
     public function asignaturasPorPeriodo($id_paquete)
     {
         $sql = "SELECT * FROM asignaturaxexamen axe INNER JOIN asignatura asi "
@@ -35,9 +34,15 @@ class CursoRepository extends EntityRepository
         return $resultset->fetchAll();
     }
     
+    /**
+     * 
+     * @param type $paquete_curso
+     * @return type
+     */
     public function paquetesPorCurso($paquete_curso)
     {
-        $sql = "SELECT * FROM v_calificacion WHERE cal_caliidn = :paquete_curso";
+        $sql = "SELECT caliidn, examnombrev, cal_caliidn, examen_examidn, caliestadon, califechad, calipremarcan "
+                . "FROM v_calificacion WHERE cal_caliidn = :paquete_curso";
         $resultset = $this->getEntityManager()->getConnection()
                 ->prepare($sql);
         $resultset->bindValue('paquete_curso', $paquete_curso);

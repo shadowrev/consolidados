@@ -66,22 +66,17 @@ class ColegioRepository extends EntityRepository
         return $resultset->fetchAll();
     }
     
-    public function obtenerCursosCalificacion($id_colegio)
+    public function obtenerCursosCalificacion($id_curso)
     {
-        $paquetes_grado = $this->obtenerPaquetesGrados($id_colegio);
-        if(empty($paquetes_grado)) throw new Exception(); // Aborta la consulta
-        
-        $caliidn_arr = array();
-        foreach ($paquetes_grado as $paquete)
-        {
-            $caliidn_arr[] = $paquete['caliidn'];
-        }
         $sql_consulta = "SELECT vs.caliidn, vs.curso_cursdescripv, vs.usuaidn, vs.califechad, vs.cal_caliidn, vs.nalumnos, vs.califica_jornada "
                 . "FROM v_salones vs "
-                . "WHERE vs.cal_caliidn IN (?) "
+                . "WHERE vs.cal_caliidn = :id_curso "
                 . "ORDER BY vs.califechad, vs.curso_cursdescripv";
         $resultset = $this->getEntityManager()->getConnection()
-                ->executeQuery($sql_consulta, array($caliidn_arr), array(\Doctrine\DBAL\Connection::PARAM_INT_ARRAY));
+//                ->executeQuery($sql_consulta, array($caliidn_arr), array(\Doctrine\DBAL\Connection::PARAM_INT_ARRAY));
+                ->prepare($sql_consulta);
+        $resultset->bindValue('id_curso', $id_curso);
+        $resultset->execute();
         return $resultset->fetchAll();
     }
 }

@@ -5,7 +5,7 @@
     <ul>
     {% for curso in cursos %}
         <li>
-            <a href="{{ path('listar_asignaturas') }}?paquete={{ curso.caliidn }}">Paquete: {{ curso.caliidn }}</a> - Curso: {{ curso.curso_cursdescripv }} - Fecha: {{ curso.califechad }}
+            <a href="{{ path('listar_asignaturas') }}?paquete={{ curso.caliidn }}">Curso: {{ curso.curso_cursdescripv }} - {{ curso.califechad }} </a>
         </li>
     {% endfor %}
     </ul>
